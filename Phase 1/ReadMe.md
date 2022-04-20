@@ -7,7 +7,7 @@ To run the project
 6) You can double click on the LaneDetection.sh after editing the input and output video paths and select the runnig mode
 7) Also you can run the LaneDetection.ipynb file through jupyter nootebook
 	- you can install Jupyter notebook through the following command pip install notebook
-	- open the current directory that contains LaneDetection.py file
+	- open the current directory that contains LaneDetection.ipynb file
 	- type the following command jupyter notebook
 	- make sure to install all the important Libraries
   
