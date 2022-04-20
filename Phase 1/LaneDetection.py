@@ -736,54 +736,24 @@ def pipeline_process_highway(image):
 
 # In[12]:
 
+if int(sys.argv[3]) == 0 :
+    #print(sys.argv[1])
+    set_prev = 0
+    debug = int(sys.argv[3])
+    #print(debug)
 
-set_prev = 0
-debug = 0
+    challenge_output_diag = sys.argv[2]+"_output.mp4"
+    clip4 = VideoFileClip(sys.argv[1]);
+    white_clip = clip4.fl_image(pipeline_process_highway) #NOTE: this function expects color images!!
+    get_ipython().run_line_magic('time', 'white_clip.write_videofile(challenge_output_diag, audio=False);')
+elif int(sys.argv[3]) == 1 :
+    #print(sys.argv[1])
+    set_prev = 0
+    debug = int(sys.argv[3])
+    #print(debug)
 
-project_output = 'project_video_output.mp4'
-clip1 = VideoFileClip("project_video.mp4");
-white_clip = clip1.fl_image(pipeline_process_highway) #NOTE: this function expects color images!!
-get_ipython().run_line_magic('time', 'white_clip.write_videofile(project_output, audio=False);')
-
-
-# In[13]:
-
-
-set_prev = 0
-debug = 1
-
-project_output_diag = 'project_video_debug.mp4'
-clip2 = VideoFileClip("project_video.mp4");
-white_clip = clip2.fl_image(pipeline_process_highway) #NOTE: this function expects color images!!
-get_ipython().run_line_magic('time', 'white_clip.write_videofile(project_output_diag, audio=False);')
-
-
-# In[ ]:
-
-
-
-
-
-# In[14]:
-
-
-set_prev = 0
-debug = 0
-
-challenge_output = 'challenge_video_output.mp4'
-clip3 = VideoFileClip("challenge_video.mp4");
-white_clip = clip3.fl_image(pipeline_process_highway) #NOTE: this function expects color images!!
-get_ipython().run_line_magic('time', 'white_clip.write_videofile(challenge_output, audio=False);')
-
-
-# In[15]:
-
-
-set_prev = 0
-debug = 1
-
-challenge_output_diag = 'challenge_video_debug.mp4'
-clip4 = VideoFileClip("challenge_video.mp4");
-white_clip = clip4.fl_image(pipeline_process_highway) #NOTE: this function expects color images!!
-get_ipython().run_line_magic('time', 'white_clip.write_videofile(challenge_output_diag, audio=False);')
+    challenge_output_diag = sys.argv[2]+"_debug.mp4"
+    clip4 = VideoFileClip(sys.argv[1]);
+    white_clip = clip4.fl_image(pipeline_process_highway) #NOTE: this function expects color images!!
+    get_ipython().run_line_magic('time', 'white_clip.write_videofile(challenge_output_diag, audio=False);')    
 
