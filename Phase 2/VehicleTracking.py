@@ -4,6 +4,8 @@
 # In[1]:
 
 
+import os
+import sys
 import cv2
 import glob
 import time
@@ -135,10 +137,7 @@ for ix, notcar in enumerate(all_notcars):
     if ix % 5 == 0:
         notcars.append(notcar)
         
-print('Vehicle train image count: {}'.format(len(all_cars)))
-print('Cars train image count: {}'.format(len(cars)))
-print('Non-vehicle train image count: {}'.format(len(all_notcars)))
-print('Not-Cars train image count: {}'.format(len(notcars)))
+
 
 
 # In[3]:
@@ -442,46 +441,15 @@ def track_vehicles(img):
 global first_frame, frame_count
 frame_count = 0
 first_frame = True
+input_clip = VideoFileClip(sys.argv[1])
 
-project_video_output = 'Tracking Project Video output.mp4'
-clip2 = VideoFileClip('project_video.mp4').subclip(0,30)
-
-project_video_clip = clip2.fl_image(track_vehicles)
-get_ipython().run_line_magic('time', 'project_video_clip.write_videofile(project_video_output, audio=False, verbose=False)')
-
-
-# In[13]:
-
-
-video = 'Tracking Project Video output.mp4'
-HTML("""
-<video width="960" height="540" controls>
-  <source src="{0}">
-</video>
-""".format(video))
-
-
-# In[14]:
-
-
-global first_frame, frame_count
-frame_count = 0
-first_frame = True
-
-project_video_output = 'Tracking challenge video output.mp4'
-clip2 = VideoFileClip('challenge_video.mp4')
+project_video_output = 'Tracking '+sys.argv[2]+' output.mp4'
+if input_clip.duration > 30:
+    clip2 = VideoFileClip(sys.argv[1]).subclip(0,30)
+else:
+    clip2 = VideoFileClip(sys.argv[1])
 
 project_video_clip = clip2.fl_image(track_vehicles)
 get_ipython().run_line_magic('time', 'project_video_clip.write_videofile(project_video_output, audio=False, verbose=False)')
 
-
-# In[15]:
-
-
-video = 'Tracking challenge video output.mp4'
-HTML("""
-<video width="960" height="540" controls>
-  <source src="{0}">
-</video>
-""".format(video))
 
